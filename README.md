@@ -18,7 +18,7 @@ The script performs the following tasks:
 ### Running the Script
 
 ```bash
-python md5sum_calculator.py <path_to_your_trace_file.txt> --base_path <base_path> --depth 0
+python md5sum_calculator.py <path_to_your_trace_file.txt> <base_path> --depth 0
 ```
 
 #### Arguments
@@ -43,7 +43,7 @@ python md5sum_calculator.py <path_to_your_trace_file.txt> --base_path <base_path
 If you have a nextflow trace TSV file `test_trace.txt` and want to search directories up to a depth of 2, you can run:
 
 ```bash
-python md5sum_calculator.py test_trace.tx --base_path /home/test/nextflow_workdirs/ --depth 2
+python md5sum_calculator.py test_trace.tx /home/test/nextflow_workdirs/ --depth 2
 ```
 This will search for directories matching the hash values in test_trace.tx, compute MD5 checksums for all files within these directories, and write the results to files named with the hash values.
 
