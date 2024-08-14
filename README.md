@@ -23,9 +23,20 @@ python md5sum_calculator.py <path_to_your_trace_file.txt> --base_path <base_path
 
 #### Arguments
 
-- `path_to_your_tsv_file.tsv`: Path to the nextflow trace TSV file containing the hash values and other information.
-- `--base_path`: Base path for searching directories. It is the path where you can find the working directories specified by the hash stored in the nextflow trace file, without including the hash value.
-- `--depth`: (Optional) Depth for directory traversal. Default is `0`, which means no recursion beyond the matched folder.
+## Arguments
+
+1. **`tsv_file`** (str, required):
+   - Path to the nextflow trace.txt TSV file containing the hash values to search for.
+   - This is a mandatory positional argument.
+
+2. **`base_path`** (str, required):
+   - Base path where the script will search for directories matching the hash values.
+   - This is a mandatory positional argument with no default value.
+
+3. **`--depth`** (int, optional, default=0):
+   - Specifies the depth for directory traversal.
+   - Default is 0, meaning the script will not recurse into subdirectories beyond the matched folder.
+
 
 #### Example
 
