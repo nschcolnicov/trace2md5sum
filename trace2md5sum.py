@@ -44,6 +44,7 @@ def process_tsv(file_path, base_path, depth=0):
         reader = csv.DictReader(tsv_file, delimiter='\t')
         for row in reader:
             hash_value = row['hash']
+            process_name = row['name']  # Extract the process name
             search_path = os.path.join(base_path, hash_value)
             print(f"Searching for folders matching: {search_path}")
 
@@ -51,10 +52,10 @@ def process_tsv(file_path, base_path, depth=0):
             for folder in glob.glob(search_path + '*'):
                 if os.path.isdir(folder):
                     print(f"Found matching folder: {folder}")
-                    matches.append((folder, hash_value))
+                    matches.append((folder, hash_value, process_name))
     
     # Process each matching folder
-    for match_path, hash_value in matches:
+    for match_path, hash_value, process_name in matches:
         # Increment count for this hash
         hash_count[hash_value] = hash_count.get(hash_value, 0) + 1
         index = hash_count[hash_value]
@@ -70,7 +71,8 @@ def process_tsv(file_path, base_path, depth=0):
         with open(md5_file_path, 'w') as md5_file:
             for file in files:
                 file_md5 = md5sum(file)
-                md5_file.write(f"{file_md5}  {file}\n")
+                # Write the md5sum, file path, and process name
+                md5_file.write(f"{file_md5}  {file}  {process_name}\n")
         
         print(f"MD5 sums for files in {match_path} written to {md5_file_path}")
 
