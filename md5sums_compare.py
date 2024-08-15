@@ -11,7 +11,7 @@ def process_folder(folder_name):
         if filename.endswith(".md5sum"):
             file_path = os.path.join(folder_name, filename)
             # Load the file into a dataframe
-            df = pd.read_csv(file_path, sep='\s+', header=None, names=['hash', 'filepath', 'process'])
+            df = pd.read_csv(file_path, sep='\t', header=None, names=['hash', 'filepath', 'process'])
             # Extract the filename from the filepath
             df['filename'] = df['filepath'].apply(lambda x: os.path.basename(x))
             # Add the folder name as a new column
@@ -32,9 +32,6 @@ def main(folder1_path, folder2_path):
 
     # Compare the hash columns to check if they are identical
     merged_df['check'] = merged_df.apply(lambda row: 'Identical' if row['hash_folder1'] == row['hash_folder2'] else 'Non-identical', axis=1)
-
-    # Save the final dataframe to a CSV file if needed
-    merged_df.to_csv('merged_results.csv', index=False)
 
     # Save the final dataframe to a CSV file
     merged_df.to_csv('results.csv', index=False)
