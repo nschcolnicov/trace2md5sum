@@ -71,8 +71,8 @@ def process_tsv(file_path, base_path, depth=0):
         with open(md5_file_path, 'w') as md5_file:
             for file in files:
                 file_md5 = md5sum(file)
-                # Write the md5sum, file path, and process name
-                md5_file.write(f"{file_md5}  {file}  {process_name}\n")
+                # Write the md5sum, file path, and process name using tabs as delimiter
+                md5_file.write(f"{file_md5}\t{file}\t{process_name}\n")
         
         print(f"MD5 sums for files in {match_path} written to {md5_file_path}")
 
