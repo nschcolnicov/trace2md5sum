@@ -66,7 +66,7 @@ The script requires two positional arguments:
 ### Example Command
 
 ```bash
-python compare_md5.py /path/to/folder1 /path/to/folder2
+python md5sums_compare.py /path/to/folder1 /path/to/folder2
 ```
 
 ### Expected Output
